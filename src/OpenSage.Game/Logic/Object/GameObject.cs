@@ -131,11 +131,7 @@ namespace OpenSage.Logic.Object
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-
+            get => _name;
             set
             {
                 if (_name != null)
@@ -489,8 +485,6 @@ namespace OpenSage.Logic.Object
 
         internal void StartConstruction(in TimeInterval gameTime)
         {
-            if (Definition.KindOf == null) return;
-
             if (Definition.KindOf.Get(ObjectKinds.Structure))
             {
                 ModelConditionFlags.SetAll(false);
@@ -572,10 +566,7 @@ namespace OpenSage.Logic.Object
 
         internal void LocalLogicTick(in TimeInterval gameTime, float tickT, HeightMap heightMap)
         {
-            if (Destroyed)
-            {
-                return;
-            }
+            if (Destroyed) return;
 
             HandleConstruction(gameTime);
 
@@ -584,15 +575,7 @@ namespace OpenSage.Logic.Object
 
         internal void BuildRenderList(RenderList renderList, Camera camera, in TimeInterval gameTime)
         {
-            if (Destroyed)
-            {
-                return;
-            }
-
-            if (ModelConditionFlags.Get(ModelConditionFlag.Sold))
-            {
-                return;
-            }
+            if (Destroyed || ModelConditionFlags.Get(ModelConditionFlag.Sold)) return;
 
             // Update all draw modules
             UpdateDrawModuleConditionStates();
