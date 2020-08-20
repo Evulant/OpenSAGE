@@ -16,7 +16,7 @@ namespace OpenSage.Logic.Object
             : base(data, gameObject, context)
         {
             _data = data;
-            _boneList = new Tuple<string, bool>[]
+            _boneList = new[]
                {
                     Tuple.Create(_data.LeftFrontTireBone, true),
                     Tuple.Create(_data.LeftFrontTireBone2, true),
